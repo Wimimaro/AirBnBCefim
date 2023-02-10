@@ -7,6 +7,18 @@ public class Personne {
     private String nom;
     private int age;
 
+    public String getPrenom() {
+        return prenom;
+    }
+
+    public String getNom() {
+        return nom;
+    }
+
+    public int getAge() {
+        return age;
+    }
+
     //Constructeur
     public Personne(String paramPrenom, String paramNom , int paramAge){
         prenom = paramPrenom;
@@ -19,4 +31,5 @@ public class Personne {
     public void afficher(){
         System.out.print(prenom + nom + "(" + age + " ans)");
     }
+
 }
