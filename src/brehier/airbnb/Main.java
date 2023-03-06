@@ -24,9 +24,9 @@ public class Main {
 
         Voyageur monVoyageur1 = new Voyageur("Victor", "LeBasque", 18);
 
-        Maison maMaison1 = new Maison(monHote1, 100, "1 rue de la maison", 200, 10, 500, true);
+        //Maison maMaison1 = new Maison(monHote1, 100, "1 rue de la maison", 200, 10, 500, true);
 
-        Appartement monAppartement1 = new Appartement(monHote1, 50, "1 rue de lappartement", 50, 2, 4, 0);
+        //Appartement monAppartement1 = new Appartement(monHote1, 50, "1 rue de lappartement", 50, 2, 4, 0);
 
         //Logement monLogement1 = new Logement(maPersonne2, 50, "1 rue de la paix, 37000 Tours", 140, 2);
         //Logement monLogement2 = new Logement(monHote1, 50, "1 rue de la paix, 37000 Tours", 140, 2);
@@ -44,24 +44,24 @@ public class Main {
         PrintWriter writer;
 
         //Conditions
-        sejour = CreateSejour.getSejour(maMaison1, nbNuits, nbVoyageurs, maDate2);
+        //sejour = CreateSejour.getSejour(maMaison1, nbNuits, nbVoyageurs, maDate2);
 
         Reservation maReservation5 ;
-        try {
-            maReservation5 = new Reservation(sejour, monVoyageur1);
-            maReservation5.afficher();
-
-            writer = new PrintWriter("Reservation.txt");
-            writer.println("Nom du voyageur : " + monVoyageur1.getNom());
-            writer.println("Numéro du logement : " + sejour.getLogement());
-            writer.println("Date d'arrivée : " + sejour.getDateArrivee());
-            writer.println("Nombre de nuits : " + sejour.getNbNuits());
-            writer.println("Nombre de voyageurs : " + sejour.getNbVoyageurs());
-            writer.close();
-
-        } catch (Exception e) {
-            System.out.println("l'erreur : " + e.getMessage());
-        }
+//        try {
+//            maReservation5 = new Reservation(sejour, monVoyageur1);
+//            maReservation5.afficher();
+//
+//            writer = new PrintWriter("Reservation.txt");
+//            writer.println("Nom du voyageur : " + monVoyageur1.getNom());
+//            writer.println("Numéro du logement : " + sejour.getLogement());
+//            writer.println("Date d'arrivée : " + sejour.getDateArrivee());
+//            writer.println("Nombre de nuits : " + sejour.getNbNuits());
+//            writer.println("Nombre de voyageurs : " + sejour.getNbVoyageurs());
+//            writer.close();
+//
+//        } catch (Exception e) {
+//            System.out.println("l'erreur : " + e.getMessage());
+//        }
 
 
 

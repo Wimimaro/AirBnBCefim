@@ -1,5 +1,7 @@
 package brehier.airbnb.utilisateurs;
 
+import java.util.Objects;
+
 public class Hote extends Personne{
     //Attributs spécifiques à hôte
     private int delaiDeReponse;
@@ -13,6 +15,10 @@ public class Hote extends Personne{
     //Méthode
 
 
+    public int getDelaiDeReponse() {
+        return delaiDeReponse;
+    }
+
     @Override
     public void afficher() {
         super.afficher();
@@ -22,5 +28,20 @@ public class Hote extends Personne{
     @Override
     public String toString(){
         return "Nom : " + getNom() + " Prénom : " + getPrenom() + " âge : " + getAge() + " qui s'engage à répondre dans les " + delaiDeReponse + "heures";
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o)
+            return true;
+
+        if (o == null || getClass() != o.getClass())
+            return false;
+
+        if (!super.equals(o))
+            return false;
+
+        Hote hote = (Hote) o;
+        return delaiDeReponse == hote.delaiDeReponse;
     }
 }

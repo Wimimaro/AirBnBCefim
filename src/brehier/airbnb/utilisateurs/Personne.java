@@ -1,5 +1,7 @@
 package brehier.airbnb.utilisateurs;
 
+import java.util.Objects;
+
 public class Personne {
 
     //Attributs
@@ -32,4 +34,17 @@ public class Personne {
         System.out.print(prenom + nom + "(" + age + " ans)");
     }
 
+    @Override
+    public boolean equals(Object o) {
+        //this = hote1 , o = hote2
+        if (this == o)
+            return true;
+
+        if (o == null || getClass() != o.getClass())
+            return false;
+
+        Personne personne = (Personne) o;
+
+        return age == personne.age && Objects.equals(prenom, personne.prenom) && Objects.equals(nom, personne.nom);
+    }
 }

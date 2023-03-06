@@ -16,7 +16,7 @@ import java.io.File;
 import java.util.ArrayList;
 
 public class LireXMLDOM {
-    public static void main(String[] args) {
+    public static void read() {
        try{
            File inputFile = new File("logements.xml");
            DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
@@ -50,16 +50,22 @@ public class LireXMLDOM {
                            String nom = eHote.getElementsByTagName("nom").item(j).getTextContent();
                            String prenom = eHote.getElementsByTagName("prenom").item(j).getTextContent();
                            int age = Integer.parseInt(eHote.getElementsByTagName("age").item(j).getTextContent());
-                           int delaiDeReponse = Integer.parseInt(eHote.getElementsByTagName("delaiDeReponse").item(j).getTextContent());
+                           int delaiReponse = Integer.parseInt(eHote.getElementsByTagName("delaiReponse").item(j).getTextContent());
 
-                           hote = new Hote(nom, prenom, age, delaiDeReponse);
-                           ArrayList listHotes = new ArrayList<Hote>();
-                           Menu.listHotes.add(hote);
+                           hote = new Hote(nom, prenom, age, delaiReponse);
+                           if (!alreadyExist(hote)) {
+                               Menu.listHotes.add(hote);
+                           } else {
+                               System.out.println(prenom + " " + nom + " existe déjà.");
+                           }
+                           //ArrayList listHotes = new ArrayList<Hote>();
+                           //Menu.listHotes.add(hote);
                        }
 
-                       int tarifParNuit = Integer.parseInt(eLogement.getElementsByTagName("tarifParNuit").item(0).getTextContent());
+                      int tarifParNuit = Integer.parseInt(eLogement.getElementsByTagName("tarifParNuit").item(0).getTextContent());
                       int superficie = Integer.parseInt(eLogement.getElementsByTagName("superficie").item(0).getTextContent());
                       int nbVoyageursMax = Integer.parseInt(eLogement.getElementsByTagName("nbVoyageursMax").item(0).getTextContent());
+                      String name = eLogement.getAttribute("name");
                       String adresse = eLogement.getElementsByTagName("adresse").item(0).getTextContent();
                       Logement objectLogement = null;
 
@@ -67,12 +73,12 @@ public class LireXMLDOM {
                       if (eLogement.getNodeName().equals("Appartement")) {
                         int numeroEtage = Integer.parseInt(eLogement.getElementsByTagName("numeroEtage").item(0).getTextContent());
                         int superficieBalcon = Integer.parseInt(eLogement.getElementsByTagName("superficieBalcon").item(0).getTextContent());
-                        objectLogement = new Appartement(hote,tarifParNuit, adresse,superficie, nbVoyageursMax, numeroEtage, superficieBalcon);
+                        objectLogement = new Appartement(name, hote,tarifParNuit, adresse,superficie, nbVoyageursMax, numeroEtage, superficieBalcon);
 
                       } else if (eLogement.getNodeName().equals("Maison")) {
                         int superficieJardin = Integer.parseInt(eLogement.getElementsByTagName("superficieJardin").item(0).getTextContent());
                         boolean possedePiscine = Boolean.parseBoolean(eLogement.getElementsByTagName("possedePiscine").item(0).getTextContent());
-                        objectLogement = new Maison(hote,tarifParNuit, adresse,superficie, nbVoyageursMax, superficieJardin, possedePiscine);
+                        objectLogement = new Maison(name, hote,tarifParNuit, adresse,superficie, nbVoyageursMax, superficieJardin, possedePiscine);
                       }
                       if(objectLogement != null) {
                           ArrayList listLogements = new ArrayList<Logement>();
@@ -85,5 +91,15 @@ public class LireXMLDOM {
        } catch (Exception e) {
            e.printStackTrace();
        }
+    }
+
+    private static boolean alreadyExist(Hote hote1) {
+        for (int i=0;i<Menu.listHotes.size();i++) {
+            Hote hote2 = Menu.listHotes.get(i);
+            if (hote1.equals(hote2)) {
+                return true;
+            }
+        }
+        return false;
     }
 }

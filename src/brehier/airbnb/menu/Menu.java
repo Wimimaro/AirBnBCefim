@@ -12,12 +12,13 @@ import brehier.airbnb.reservations.Reservation;
 import brehier.airbnb.utilisateurs.Hote;
 import brehier.airbnb.utilisateurs.Voyageur;
 
+
 public class Menu {
 
 	static Scanner scanner;
 
 	static ArrayList<Hote> listHotes;
-	static ArrayList<Logement> listLogements;
+	public static ArrayList<Logement> listLogements;
 	static ArrayList<Voyageur> listVoyageurs;
 	static ArrayList<Reservation> listReservations;
 
@@ -28,6 +29,21 @@ public class Menu {
 		scanner = new Scanner(System.in);
 	
 		init();
+
+
+		// 1.1° - Première méthode (pas de généricité)
+		//Maison maison = Maison.findMaisonByName("Maison 1");
+		//Appartement appartement = findAppartementByName("Appartement 12");
+
+// 1.2° - Deuxième méthode (pas de généricité)
+		Maison maison1 = (Maison) findLogementByName("Maison 1");
+		Appartement appartement1 = (Appartement) findLogementByName("Appartement 1");
+
+// 1.3° - Troisième méthode (généricité)
+		//Maison maison2 = findLogementByNameWithGenericity("Maison 1");
+		//Appartement appartement2 = findLogementByNameWithGenericity("Appartement 1");
+
+		LireXMLDOM.read();
 
 		listerMenu();
 
