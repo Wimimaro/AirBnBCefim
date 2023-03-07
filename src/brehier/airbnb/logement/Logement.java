@@ -34,14 +34,6 @@ public abstract class Logement {
         System.out.println("Superficie : " + superficie + " m²");
     }
 
-    public void findLogementByName(String name){
-        for (Logement logement : Menu.listLogements) {
-            if(logement.getName().equals(name)){
-                logement.afficher();
-            }
-        }
-    }
-
     //Méthode => Getters + Setters
     public int getTarifParNuit() {
         return tarifParNuit;

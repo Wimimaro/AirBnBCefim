@@ -30,6 +30,8 @@ public class Menu {
 	
 		init();
 
+		LireXMLDOM.read();
+
 
 		// 1.1° - Première méthode (pas de généricité)
 		//Maison maison = Maison.findMaisonByName("Maison 1");
@@ -43,7 +45,7 @@ public class Menu {
 		//Maison maison2 = findLogementByNameWithGenericity("Maison 1");
 		//Appartement appartement2 = findLogementByNameWithGenericity("Appartement 1");
 
-		LireXMLDOM.read();
+
 
 		listerMenu();
 
@@ -96,6 +98,31 @@ public class Menu {
 		}
 		return choixUtilisateur;
 	}
+
+	public static Logement findLogementByName(String name){
+		for (Logement logement : Menu.listLogements) {
+			if(logement.getName().equals(name)){
+				System.out.println("un logement existe déjà avec ce nom " + name);
+				logement.afficher();
+				return logement;
+			}
+		}
+		System.out.println("pas de logement avec ce nom : " + name);
+		return null;
+	}
+
+	public static <T extends Logement> void findLogementByNameWithGenericity(T obj, String name){
+		for (Logement logement : Menu.listLogements) {
+			if(logement.getName().equals(name)){
+				System.out.println("un logement existe déjà avec ce nom " + name);
+				logement.afficher();
+				obj = (T) logement;
+			}
+		}
+		System.out.println("pas de logement avec ce nom : " + name);
+	}
+
+
 
 
 	private static void init() {
